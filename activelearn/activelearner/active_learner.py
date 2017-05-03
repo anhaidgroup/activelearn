@@ -12,8 +12,7 @@ class ActiveLearner(object):
     
     Args:
         model (Model): Scikit-Learn Model to learn
-        example_selector (ExampleSelector): example selector to query 
-					    informative examples
+        example_selector (ExampleSelector): example selector to query informative examples
         labeler (Labeler): A labeler which fetches labels from the oracle/human
         batch_size (number): The number of examples to be labeled per iteration
         num_iters (number): Number of iterations to run the active learner
@@ -38,10 +37,10 @@ class ActiveLearner(object):
               label_attr='label', not_sure_label_allowed=False):
         """
         Performs the Active Learning Loop to help learn the model by querying 
-	    the labels of the instances
+	the labels of the instances
         
         Args:
-        unlabeled_dataset (DataFrame): A Dataframe containing unlabeled
+            unlabeled_dataset (DataFrame): A Dataframe containing unlabeled
 					   examples
             
 	    seed (DataFrame): A Dataframe containing initial labeled examples
@@ -53,11 +52,11 @@ class ActiveLearner(object):
 	    context (dictionary): A dictionary containing all the necessary
 	                context for the labeling function
 		
-		label_attr (string): A string indicating the name of the label 
+            label_attr (string): A string indicating the name of the label 
 		            column in the labeled dataset. Defaults to label
 	  
         Returns:
-           A learned model  
+            A learned model  
         """
         
         #validate input tables
