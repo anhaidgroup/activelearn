@@ -42,7 +42,17 @@ class EntropySelectorTests(unittest.TestCase):
 
         assert_equal(1,instances_to_be_labeled.iloc[0]["_id"])
         assert_equal(4,instances_to_be_labeled.iloc[1]["_id"])
-        
+    
+    def test_compute_entropy_with_one_prob_zero(self):
+        es = EntropySelector()
+        entropy = es._compute_entropy([0,1])
+        assert_equal(0, entropy)
+    
+    def test_compute_entropy_with_both_prob_zero(self):
+        es = EntropySelector()
+        entropy = es._compute_entropy([0,0])
+        assert_equal(0, entropy)
+           
     @raises(TypeError)
     def test_entropy_selector_invalid_unlabeled_dataset(self):
         es = EntropySelector()
