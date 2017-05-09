@@ -9,7 +9,7 @@ import os
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from activelearn.exampleselector.entropy_based_example_selector import EntropyBasedExampleSelector
+from activelearn.exampleselector.entropy_selector import EntropySelector
 from activelearn.labeler.cli_labeler import CliLabeler
 from activelearn.activelearner.active_learner import ActiveLearner
 from activelearn.utils.validation import validate_attr
@@ -59,7 +59,7 @@ class ActiveLearnerTests(unittest.TestCase):
         self.labeler.label = MagicMock()
         self.labeler.label.side_effect = [gold_labeled_data1, gold_labeled_data2]
         #create a selector
-        self.selector  = EntropyBasedExampleSelector()
+        self.selector  = EntropySelector()
         #create a learner
         alearner = ActiveLearner(model, self.selector, self.labeler, 1, 2)
         
@@ -94,7 +94,7 @@ class ActiveLearnerTests(unittest.TestCase):
         self.labeler.label = MagicMock()
         self.labeler.label.side_effect = [gold_labeled_data1, gold_labeled_data2]
         #create a selector
-        self.selector  = EntropyBasedExampleSelector()
+        self.selector  = EntropySelector()
         #create a learner
         alearner = ActiveLearner(model, self.selector, self.labeler, 2, 2)
         
@@ -135,7 +135,7 @@ class ActiveLearnerTests(unittest.TestCase):
         self.labeler.label.side_effect = [gold_labeled_data1, gold_labeled_data2, gold_labeled_data3]
         
         #create a selector
-        self.selector  = EntropyBasedExampleSelector()
+        self.selector  = EntropySelector()
         
         #length of unlabeled dataset
         len_unlabeled_data_before_learning = len(self.unlabeled_dataset)
@@ -171,7 +171,7 @@ class ActiveLearnerTests(unittest.TestCase):
         self.labeler.label.side_effect = [gold_labeled_data1, gold_labeled_data2]
         
         #create a selector
-        self.selector  = EntropyBasedExampleSelector()
+        self.selector  = EntropySelector()
         #create a learner
         alearner = ActiveLearner(model, self.selector, self.labeler, 2, 2)
         alearner.learn(self.unlabeled_dataset, self.labeled_dataset_seed, exclude_attrs=['_id', 'l_ID', 'r_ID'], context=self.context, label_attr='label')
@@ -189,7 +189,7 @@ class ActiveLearnerTests(unittest.TestCase):
         label_attr = 'label'
         
         #create a selector
-        self.selector  = EntropyBasedExampleSelector()
+        self.selector  = EntropySelector()
         #create a learner
         alearner = ActiveLearner(model, self.selector, self.labeler, 2, 2)
         

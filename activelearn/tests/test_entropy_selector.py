@@ -8,7 +8,7 @@ import operator
 import os
 
 from sklearn import linear_model
-from activelearn.exampleselector.entropy_based_example_selector import EntropyBasedExampleSelector
+from activelearn.exampleselector.entropy_selector import EntropySelector
 
 class EntropySelectorTests(unittest.TestCase):
     def setUp(self):
@@ -24,7 +24,7 @@ class EntropySelectorTests(unittest.TestCase):
         
     #testing non batch mode
     def test_select_example(self):
-        es = EntropyBasedExampleSelector()
+        es = EntropySelector()
         
         instance_to_be_labeled = es.select_examples(
                                      self.unlabeled_dataset.head(5), self.model, 
@@ -34,7 +34,7 @@ class EntropySelectorTests(unittest.TestCase):
     
     #testing batch mode
     def test_select_examples(self):
-        es = EntropyBasedExampleSelector()
+        es = EntropySelector()
         
         instances_to_be_labeled = es.select_examples(
                                       self.unlabeled_dataset.head(5), self.model,
@@ -45,12 +45,12 @@ class EntropySelectorTests(unittest.TestCase):
         
     @raises(TypeError)
     def test_entropy_selector_invalid_unlabeled_dataset(self):
-        es = EntropyBasedExampleSelector()
+        es = EntropySelector()
         es.select_examples([], self.model,
                                       ['_id', 'l_ID', 'r_ID'], 2)
     @raises(AssertionError)
     def test_entropy_selector_invalid_exclude_attr(self):
-        es = EntropyBasedExampleSelector()
+        es = EntropySelector()
         es.select_examples(self.unlabeled_dataset.head(5), self.model,
                                       ['_id', 'l_ID', 'A_ID'], 2)
 if __name__ == '__main__':

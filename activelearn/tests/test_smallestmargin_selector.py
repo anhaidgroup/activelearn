@@ -8,7 +8,7 @@ import operator
 import os
 
 from sklearn import linear_model
-from activelearn.exampleselector.smallestmargin_based_example_selector import SmallestMarginBasedExampleSelector
+from activelearn.exampleselector.smallestmargin_selector import SmallestMarginSelector
 
 class SmallestMarginSelectorTests(unittest.TestCase):
     def setUp(self):
@@ -24,7 +24,7 @@ class SmallestMarginSelectorTests(unittest.TestCase):
         
     #testing non batch mode
     def test_select_example(self):
-        es = SmallestMarginBasedExampleSelector()
+        es = SmallestMarginSelector()
         
         instance_to_be_labeled = es.select_examples(
                                      self.unlabeled_dataset.head(5), self.model, 
@@ -34,7 +34,7 @@ class SmallestMarginSelectorTests(unittest.TestCase):
     
     #testing batch mode
     def test_select_examples(self):
-        es = SmallestMarginBasedExampleSelector()
+        es = SmallestMarginSelector()
         
         instances_to_be_labeled = es.select_examples(
                                       self.unlabeled_dataset.head(5), self.model,
@@ -45,12 +45,12 @@ class SmallestMarginSelectorTests(unittest.TestCase):
         
     @raises(TypeError)
     def test_entropy_selector_invalid_unlabeled_dataset(self):
-        es = SmallestMarginBasedExampleSelector()
+        es = SmallestMarginSelector()
         es.select_examples([], self.model,
                                       ['_id', 'l_ID', 'r_ID'], 2)
     @raises(AssertionError)
     def test_entropy_selector_invalid_exclude_attr(self):
-        es = SmallestMarginBasedExampleSelector()
+        es = SmallestMarginSelector()
         es.select_examples(self.unlabeled_dataset.head(5), self.model,
                                       ['_id', 'l_ID', 'A_ID'], 2)
 if __name__ == '__main__':

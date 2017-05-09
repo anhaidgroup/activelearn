@@ -1,15 +1,15 @@
 import operator
 import numpy as np
 
-from activelearn.exampleselector.uncertainty_based_example_selector import UncertaintyBasedExampleSelector
+from activelearn.exampleselector.uncertainty_based_example_selector import UncertaintySelector
 from activelearn.utils.validation import validate_input_table
 from activelearn.utils.validation import validate_attr
 from activelearn.utils.helper_functions import remove_exclude_attr
 
-class LeastConfidenceExampleSelector(UncertaintyBasedExampleSelector):
+class LeastConfidenceSelector(UncertaintySelector):
     
     def __init__(self):
-        super(LeastConfidenceExampleSelector, self).__init__()
+        super(LeastConfidenceSelector, self).__init__()
 
     
     def select_examples(self, unlabeled_dataset, model, exclude_attrs=None, batch_size=1):
