@@ -2,16 +2,16 @@
 import operator
 import numpy as np
  
-from activelearn.exampleselector.uncertainty_based_example_selector import UncertaintyBasedExampleSelector
+from activelearn.exampleselector.uncertainty_based_example_selector import UncertaintySelector
 from activelearn.utils.validation import validate_input_table
 from activelearn.utils.validation import validate_attr
 from activelearn.utils.helper_functions import remove_exclude_attr
 from six.moves import xrange
 
-class SmallestMarginBasedExampleSelector(UncertaintyBasedExampleSelector):
+class SmallestMarginSelector(UncertaintySelector):
      
     def __init__(self):
-        super(SmallestMarginBasedExampleSelector, self).__init__()
+        super(SmallestMarginSelector, self).__init__()
      
     def _compute_margin(self, probability):
         return (probability[0] - probability[1])
@@ -25,12 +25,12 @@ class SmallestMarginBasedExampleSelector(UncertaintyBasedExampleSelector):
 
         Args:
             model (Model): Model that is used to compute the uncertainty measure of the example
-            unlabeled_dataset (Pandas DataFrame): A Dataframe containing unlabeled examples
+            unlabeled_dataset (DataFrame): A DataFrame containing unlabeled examples
             exclude_attr (list): Attributes which are not feature attributes.
             batch_size (number): The number of examples to select
         
         Returns:
-                The informative examples  
+                The table of most informative examples to be labeled (DataFrame) 
         """
         validate_input_table(unlabeled_dataset, 'unlabeled dataset')
         #validate exclude attr

@@ -2,19 +2,19 @@
 import operator
 import pandas as pd
 
-from activelearn.exampleselector.uncertainty_based_example_selector import UncertaintyBasedExampleSelector
+from activelearn.exampleselector.uncertainty_based_example_selector import UncertaintySelector
 
 from activelearn.utils.validation import validate_input_table
 from activelearn.utils.validation import validate_attr
 from activelearn.utils.helper_functions import remove_exclude_attr
 from six.moves import xrange
 
-class EntropyBasedExampleSelector(UncertaintyBasedExampleSelector):
+class EntropySelector(UncertaintySelector):
     """
     Entropy based Uncertainty example selection
     """
     def __init__(self):
-        super(EntropyBasedExampleSelector, self).__init__()
+        super(EntropySelector, self).__init__()
     
     
     def _compute_entropy(self, probability):

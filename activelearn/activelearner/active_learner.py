@@ -14,15 +14,15 @@ class ActiveLearner(object):
         model (Model): Scikit-Learn Model to learn
         example_selector (ExampleSelector): example selector to query informative examples
         labeler (Labeler): A labeler which fetches labels from the oracle/human
-        batch_size (number): The number of examples to be labeled per iteration
-        num_iters (number): Number of iterations to run the active learner
+        batch_size (int): The number of examples to be labeled per iteration
+        num_iters (int): Number of iterations to run the active learner
 
     Attributes:
         model (Model): An attribute to store the Scikit-Learn Model
         example_selector (ExampleSelector): An attribute to store the example selector.
         labeler (Labeler): An attribute to store the labeler passed in arguments
-        batch_size (number): An attribute to store the batch_size
-        num_iters (number): An attribute to store the number of iterations
+        batch_size (int): An attribute to store the batch_size
+        num_iters (int): An attribute to store the number of iterations
     """
 
     def __init__(self, model, example_selector, labeler, batch_size, num_iters):

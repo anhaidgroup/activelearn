@@ -8,7 +8,7 @@ import operator
 import os
 
 from sklearn import linear_model
-from activelearn.exampleselector.least_confidence_based_example_selector import LeastConfidenceExampleSelector
+from activelearn.exampleselector.least_confidence_selector import LeastConfidenceSelector
 
 class LeastConfidenceSelectorTests(unittest.TestCase):
     def setUp(self):
@@ -24,7 +24,7 @@ class LeastConfidenceSelectorTests(unittest.TestCase):
         
     #testing non batch mode
     def test_select_example(self):
-        es = LeastConfidenceExampleSelector()
+        es = LeastConfidenceSelector()
         
         instance_to_be_labeled = es.select_examples(
                                      self.unlabeled_dataset.head(5), self.model, 
@@ -34,7 +34,7 @@ class LeastConfidenceSelectorTests(unittest.TestCase):
     
     #testing batch mode
     def test_select_examples(self):
-        es = LeastConfidenceExampleSelector()
+        es = LeastConfidenceSelector()
         
         instances_to_be_labeled = es.select_examples(
                                       self.unlabeled_dataset.head(5), self.model,
@@ -45,12 +45,12 @@ class LeastConfidenceSelectorTests(unittest.TestCase):
         
     @raises(TypeError)
     def test_entropy_selector_invalid_unlabeled_dataset(self):
-        es = LeastConfidenceExampleSelector()
+        es = LeastConfidenceSelector()
         es.select_examples([], self.model,
                                       ['_id', 'l_ID', 'r_ID'], 2)
     @raises(AssertionError)
     def test_entropy_selector_invalid_exclude_attr(self):
-        es = LeastConfidenceExampleSelector()
+        es = LeastConfidenceSelector()
         es.select_examples(self.unlabeled_dataset.head(5), self.model,
                                       ['_id', 'l_ID', 'A_ID'], 2)
 if __name__ == '__main__':
